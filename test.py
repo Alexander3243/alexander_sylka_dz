@@ -1,44 +1,27 @@
-def is_triangle(side):
-    a = side[0]
-    b = side[1]
-    c = side[2]
+"""
+14. Напишіть програму, яка запропонує користувачеві ввести десяткове число у межах від 1 до 10. Програма повинна
+вивести версію римського числа. Програма має враховувати ситуацію, якщо введене число є за межами діапазону від 1 до 10.
+"""
 
-    if a + b >= c and a + c >= b and b + c >= a and 0 not in side:
-        return a, b, c
-    return False
+ROMAN_NUMBERS = {1: "I", 2: "II", 3: "III", 4: "IV", 5: "V", 6: "VI", 7: "VII", 8: "VIII", 9: "IX", 10: "X",
+                 20: "XX", 30: "XXX", 40: "XL", 50: "L", 60: "LX", 70: "LXX", 80: "LXXX", 90: "XC", 100: "C",
+                 200: "CC", 300: "CCC", 400: "CD", 500: "D", 600: "DC", 700: "DCC", 800: "DCCC", 900: "CM", 1000: "M"}
 
+a = "1155"
+result = int("365235")  # CCCLXVCCXXXV-365235 LXVCCXXXV-65235 VCCXXXV-5235 CCXXXV-235 XXXV-35 v-5
+rome_number = ""
+for i in range(len(str(result))):
+    if result >= 1000:
+        print(int(str(result)[0] + (len(str(result)) - 1) * "0"))
+        rome_number += ROMAN_NUMBERS[int(str(result)[0] + (len(str(result)) - 1) * "0")]
+        result %= int(str(result)[0] + (len(str(result)) - 1) * "0")
+    elif 100 <= result <= 1000:
+        rome_number += ROMAN_NUMBERS[100]
+        result %= 100
+    elif 10 <= result <= 100:
+        rome_number += ROMAN_NUMBERS[10]
+        result %= 10
+    elif 1 <= result <= 10:
+        rome_number += ROMAN_NUMBERS[result]
 
-def triangle(area):
-    if is_triangle(area):
-        a, b, c = is_triangle(area)
-        p = (a + b + c) / 2
-        s = pow(p * (p - a) * (p - b) * (p - c), 0.5)
-        return '%.2f' % s
-    return "triangle does not exist"
-
-
-def circle(area):
-    r_circle = area[0]
-    PI = 3.14
-    s = PI * r_circle ** 2
-    return '%.2f' % s
-
-
-def rectangle(area):
-    side1 = area[0]
-    side2 = area[1]
-    s = side1 * side2
-    return '%.2f' % s
-
-
-figure = input()
-numbers = list(map(int, input().split()))
-
-if figure == "triangle":
-    print(triangle(numbers))
-elif figure == "circle":
-    print(circle(numbers))
-elif figure == "rectangle":
-    print(rectangle(numbers))
-else:
-    print("Enter the correct name figure")
+print(rome_number)
