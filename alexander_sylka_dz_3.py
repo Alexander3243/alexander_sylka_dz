@@ -21,23 +21,18 @@ def first_capital_letter(text: str) -> str:
 2. Дано дійсне додатне число a і ціле число n, яке може набувати додатних і від’ємних значень.
 Напишіть функцію для обчислення an. Стандартною функцією піднесення до степеня і оператором ** користуватися не можна.
 
- Вхідні дані:
+Вхідні дані:
 
  2
  1
  2
 -1
- 2
- 1
- 2
--1
 
- Вихідні дані:
+Вихідні дані:
 
- 2.0
- 0.5
+2.0
+0.5
 """
-
 
 def calc_degree(num1, num2):
     result = 1.0
@@ -52,19 +47,10 @@ def calc_degree(num1, num2):
     return result
 
 
-list_numbers = []
+num1 = int(input())
+num2 = int(input())
 
-# enter numbers one by one ('Enter' - close program)
-while True:
-    num = input()
-    if num == '':
-        break
-    list_numbers.append(num)
-
-i = 0
-while len(list_numbers) - 1 > i:
-    print(calc_degree(float(list_numbers[i]), int(list_numbers[i + 1])))
-    i += 2
+print(calc_degree(num1, num2))
 
 """
 3. Напишіть функцію, яка отримує значення середньомісячної кількості опадів по місяцях (в мм) і повертає
@@ -140,20 +126,27 @@ def check_data(n):
     month = n[1]
     year = n[2]
 
-    months_days = {1: 31, 2: check_year(year), 3: 31, 4: 30, 5: 31,
-                   6: 30, 7: 31, 8: 31, 9: 30, 10: 31, 11: 30, 12: 31}
+    months_days = {1: 31,
+                   2: check_year(year),
+                   3: 31,
+                   4: 30,
+                   5: 31,
+                   6: 30,
+                   7: 31,
+                   8: 31,
+                   9: 30,
+                   10: 31,
+                   11: 30,
+                   12: 31}
 
     if year > 0 and len(str(year)) == 4 and 0 < month <= 12 and 0 < day <= months_days[month]:
         return True
     return False
 
 
-# enter 3 numbers in one line with a space ('Enter' - close program)
-while True:
-    nums = list(map(int, input().split()))
-    if len(nums) != 3:
-        break
-    print(check_data(nums))
+nums = list(map(int, input().split()))
+
+print(check_data(nums))
 
 """
 5. На стадіоні є три категорії місць для сидіння: місця класу A коштують a грошових одиниць, місця
@@ -329,14 +322,12 @@ print(sort_line(input().split(",")))
 
 5 7 9 11
 5 7 10 12
-10 13 16 19 22 25
+
 Вихідні дані:
 
 True
 False
-
 """
-
 
 def check_progression(n):
     difference = n[1] - n[0]
@@ -348,6 +339,7 @@ def check_progression(n):
 
 
 nums = list(map(int, input().split()))
+print(check_progression(nums))
 
 """
 12. Напишіть функцію, яка виконує ділення двох цілих чисел (числа вводяться в одному рядку через пропуск.).
@@ -520,6 +512,8 @@ def check_password(n):
                         return True
     return False
 
+print(check_password(input()))
+
 """
 17. Напишіть програму для розрахунку кількості днів між двома датами, використовуючи модуль datetime.
 
@@ -578,6 +572,8 @@ def calc_numbers(n):
 
     return "Required time to calculate sum of 1 to 1000000 (sum = {}) is: {} seconds.".format(result, d_time)
 
+print(calc_numbers(int(input())))
+
 """
 19. Кодування довжин послідовностей - це базовий алгоритм стиснення даних. Реалізуйте найпростіший його варіант.
 На вхід алгоритму подається рядок, що містить символи латинського алфавіту. Цей рядок розбивається на групи однакових
@@ -606,7 +602,6 @@ def code_line(s):
         else:
             result += str(count) + s[i] if count > 1 else result.join(s[i])
             count = 1
-    print(result)
+    return result
 
 print(code_line(input()))
-
